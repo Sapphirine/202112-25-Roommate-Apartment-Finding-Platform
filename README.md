@@ -4,166 +4,91 @@ EECS E6893 Big Data Analytics final project
 # e4040-2021fall-project-REAN-jz3313-rc3372-xz3014
 
 ## Introduction
-Residual Attention Network is a convolutional neural network using attention mechanism which can incorporate with state-of-the-art feed forward network architecture in an end-to-end training fashion.
-
-Residual Attention Networks are described in the paper "Residual Attention Network for Image Classification"(https://arxiv.org/pdf/1704.06904.pdf).
-
-This project uses TensorFlow and Keras as the building blocks to attempt a reproduction of the original RAN paper.
+The number of international students in the United States is increasing these years. It is a little hard for new international students to find roommates and apartments which fit their needs. So, this project is going to build a roommates and apartments platform for new students. We designed our own frontend website and will use cluster algorithm like euclidean distance, cosine similarity and K-Means to get our recommendation, the result will show on the frontend back. Besides, we will compare algorithm we used to find which one is better for our platform.
 
 
 ## Prerequisites
 ### VM Environment
-The project is hosted on GCP VM instance with the following configuration:
- - machine type: n1-standard-8
- - GPUs: 1 x NVIDIA Tesla T4
- - OS: Ubuntu 18.04.4
+
+ 
 
 ### Packages
-Our project uses Python 3.6.9, and following are the packages used in the project.
-
- - CUDA: 11.0
- - cudnn: 8.0
- - Python 3.6.9
- - tensorflow 2.4.0
 
 ## Datasets
 
-CIFAR-10: CIFAR-10 data set contains 60, 000 32 × 32 color images in 10 classes, with 50, 000 training images and 10, 000 test images. 
+Roommates: a dataset contains 13+ features and 3000+ rows including first name, last name, email address, uni, gender, hobbies, etc. 
 
-CIFAR-100: CIFAR-100 data set contains 60, 000 32 × 32 color images in 100 classes, with 50, 000 training images and 10, 000 test images.
+Apartments: a dataset contains 10+ features and 40000+ rows including name, address, location, distance, etc.
 
-The CIFAR-10 and CIFAR-100 data set can be accessed from tensorflow dataset using like `tf.keras.datasets.cifar10.load_data() ` and need not to be stored in Github Repo or Google Drive.
+## Demo
 
-## Model
+You can see the demonstration of our project throught this link: https://www.youtube.com/watch?v=ccGrH4LN8sA
 
-Model is stored in Google Drive: https://drive.google.com/drive/folders/1dZYexOiwrqoOLvYGVXS7hMbWtxudR9mv
+## Architecture
 
 
+## Flow Chart
 
 ## Results
-We both implemented Attention-56 and Attention-92 on CIFAR-10 and CIFAR-100. The accuracies are listed below.   
 
-CIFAR-10:  
-| Model | CIFAR-10 Acc (%)  | Orig. Paper Acc (%) | CIFAR-10 time/epoch (s) | Params | 
-| :---: | :---: | :---: | :---: | :---: |
-| Attention-56 | 83.94 | 94.48| 110 | 59M | 
-| Attention-92 | 83.82 | 95.01| 110 | 112M | 
-
-CIFAR-100:  
-| Model | CIFAR-100 Acc (%) | Orig. Paper Acc (%) | CIFAR-100 time/epoch (s) | Params | 
-| :---: | :---: | :---: | :---: | :---: |
-| Attention-56 | 54.39 | N/A | 180 | 59M |
-| Attention-92 | 54.14 | 78.29 | 180 | 112M |
 
 
 
 ## Organization
 
-Main Jupiter Notebook: Task-CIFAR10.ipynb, Task-CIFAR100.ipynb
-
-Source code: including in the src
-
-Figures: figures showing that the work are done in GCP, key results
-
-Logs: Model training logs
-
 ```
 ./
+├── .gitignore
 ├── README.md
-├── Task-CIFAR10.ipynb
-├── Task-CIFAR100.ipynb
-├── figures
-│   ├── cifar100_attention56.png
-│   ├── cifar100_attention92.png
-│   ├── cifar10_attention56.png
-│   ├── cifar10_attention92.png
-│   ├── gcp_work_example_screenshot_1.png
-│   ├── gcp_work_example_screenshot_2.png
-│   └── gcp_work_example_screenshot_3.png
-├── logs
-│   ├── cifar10
-│   │   ├── 20211219-201804
-│   │   │   ├── train
-│   │   │   │   ├── events.out.tfevents.1639945085.nndl.25596.7096.v2
-│   │   │   │   ├── events.out.tfevents.1639945099.nndl.profile-empty
-│   │   │   │   └── plugins
-│   │   │   │       └── profile
-│   │   │   │           └── 2021_12_19_20_18_19
-│   │   │   │               ├── nndl.input_pipeline.pb
-│   │   │   │               ├── nndl.kernel_stats.pb
-│   │   │   │               ├── nndl.memory_profile.json.gz
-│   │   │   │               ├── nndl.overview_page.pb
-│   │   │   │               ├── nndl.tensorflow_stats.pb
-│   │   │   │               ├── nndl.trace.json.gz
-│   │   │   │               └── nndl.xplane.pb
-│   │   │   └── validation
-│   │   │       └── events.out.tfevents.1639945200.nndl.25596.23536.v2
-│   │   ├── 20211219-215701
-│   │   │   ├── train
-│   │   │   │   ├── events.out.tfevents.1639951022.nndl.25596.314304.v2
-│   │   │   │   ├── events.out.tfevents.1639951040.nndl.profile-empty
-│   │   │   │   └── plugins
-│   │   │   │       └── profile
-│   │   │   │           └── 2021_12_19_21_57_20
-│   │   │   │               ├── nndl.input_pipeline.pb
-│   │   │   │               ├── nndl.kernel_stats.pb
-│   │   │   │               ├── nndl.memory_profile.json.gz
-│   │   │   │               ├── nndl.overview_page.pb
-│   │   │   │               ├── nndl.tensorflow_stats.pb
-│   │   │   │               ├── nndl.trace.json.gz
-│   │   │   │               └── nndl.xplane.pb
-│   │   │   └── validation
-│   │   │       └── events.out.tfevents.1639951207.nndl.25596.342090.v2
-│   │   └── 20211219-234747
-│   │       ├── train
-│   │       │   ├── events.out.tfevents.1639957668.instance-1.3419.21832.v2
-│   │       │   ├── events.out.tfevents.1639957696.instance-1.profile-empty
-│   │       │   └── plugins
-│   │       │       └── profile
-│   │       │           └── 2021_12_19_23_48_16
-│   │       │               ├── instance-1.input_pipeline.pb
-│   │       │               ├── instance-1.kernel_stats.pb
-│   │       │               ├── instance-1.memory_profile.json.gz
-│   │       │               ├── instance-1.overview_page.pb
-│   │       │               ├── instance-1.tensorflow_stats.pb
-│   │       │               ├── instance-1.trace.json.gz
-│   │       │               └── instance-1.xplane.pb
-│   │       └── validation
-│   │           └── events.out.tfevents.1639957792.instance-1.3419.39676.v2
-│   └── cifar100
-│       ├── 20211219-152901
-│       │   ├── train
-│       │   │   ├── events.out.tfevents.1639927741.nndl.25554.18734.v2
-│       │   │   ├── events.out.tfevents.1639927753.nndl.profile-empty
-│       │   │   └── plugins
-│       │   │       └── profile
-│       │   │           └── 2021_12_19_15_29_13
-│       │   │               ├── nndl.input_pipeline.pb
-│       │   │               ├── nndl.kernel_stats.pb
-│       │   │               ├── nndl.memory_profile.json.gz
-│       │   │               ├── nndl.overview_page.pb
-│       │   │               ├── nndl.tensorflow_stats.pb
-│       │   │               ├── nndl.trace.json.gz
-│       │   │               └── nndl.xplane.pb
-│       │   └── validation
-│       │       └── events.out.tfevents.1639927853.nndl.25554.25614.v2
-│       └── 20211219-164544
-│           ├── train
-│           │   ├── events.out.tfevents.1639932344.nndl.25554.207939.v2
-│           │   ├── events.out.tfevents.1639932363.nndl.profile-empty
-│           │   └── plugins
-│           │       └── profile
-│           │           └── 2021_12_19_16_46_03
-│           │               ├── nndl.input_pipeline.pb
-│           │               ├── nndl.kernel_stats.pb
-│           │               ├── nndl.memory_profile.json.gz
-│           │               ├── nndl.overview_page.pb
-│           │               ├── nndl.tensorflow_stats.pb
-│           │               ├── nndl.trace.json.gz
-│           │               └── nndl.xplane.pb
-│           └── validation
-│               └── events.out.tfevents.1639932529.nndl.25554.235725.v2
-└── src
-    └── modules.py
+├── data
+│   ├── airbnb.csv
+│   ├── countries.txt
+│   ├── majors.txt
+│   ├── roommates.csv
+│   └── shcools.txt
+├── docs
+│   ├── 6893_progress_paper.doc
+│   ├── figs
+│   │   ├── fig1arch.png
+│   │   ├── fig2flowchart.png
+│   │   ├── fig3frontinfo.png
+│   │   ├── fig4frontresult.png
+│   │   └── flowchart.png
+│   ├── progress_report.docx
+│   └── ~$93_progress_paper.doc
+├── final_BDA
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-38.pyc
+│   │   ├── search.cpython-38.pyc
+│   │   ├── search2.cpython-38.pyc
+│   │   ├── settings.cpython-38.pyc
+│   │   ├── urls.cpython-38.pyc
+│   │   ├── views.cpython-38.pyc
+│   │   └── wsgi.cpython-38.pyc
+│   ├── asgi.py
+│   ├── search.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── manage.py
+├── src
+│   ├── create_table_gbp.py
+│   ├── knn+cosine_similarity.ipynb
+│   ├── pull_from_gbq.py
+│   └── push_to_gbq.py
+├── static
+│   ├── css
+│   │   ├── postPatt.css
+│   │   └── resultsPatt.css
+│   ├── js
+│   │   ├── button.js
+│   │   └── display.js
+│   └── picture
+│       ├── Columbia.jpg
+│       └── columbia_university.jpg
+└── templates
+    ├── post.html
+    └── results.html
 ```
 
